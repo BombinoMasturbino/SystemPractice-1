@@ -1,0 +1,14 @@
+<div style="display:grid;place-items:center;height:100vh">
+  <strong style="font-size:20px">Введите ваш текст</strong>
+  <textarea id="i" style="width:80%;height:200px;margin-top:20px"></textarea>
+  <button onclick="a()" style="margin-top:20px">Ввести</button>
+  <div id="r" style="margin-top:20px"></div>
+</div>
+<script>
+  function a(){
+    let t=i.value.toLowerCase(),c={},s=0;
+    for(let l of t)if(l>='а'&&l<='я'||'їєіґ'.includes(l))c[l]=(c[l]||0)+1,s++;
+    r.innerHTML='';
+    for(let l in c)r.innerHTML+=l+': '+(c[l]/s*100).toFixed(2)+'%<br>';
+  }
+</script>
