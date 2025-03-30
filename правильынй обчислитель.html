@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Таблиця частот</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Таблиця частот</h1>
+    <textarea id="textInput" rows="10" cols="50"></textarea><br><br>
+    <button onclick="calculateFrequency()">Розрахувати частоту</button>
+    <table id="frequencyTable">
+        <thead>
+            <tr>
+                <th>Слово</th>
+                <th>Частота</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        function calculateFrequency() {
+            const text = document.getElementById("textInput").value.toLowerCase();
+            const words = text.split(/\s+/);
+            const frequency = {};
+
+            words.forEach(word => {
+                if (word) {
+                    frequency[word] = (frequency[word] || 0) + 1;
+                }
+            });
+
+            const tableBody = document.getElementById("frequencyTable").getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = '';
+
+            for (const word in frequency) {
+                const row = tableBody.insertRow();
+                const cellWord = row.insertCell(0);
+                const cellFrequency = row.insertCell(1);
+                cellWord.textContent = word;
+                cellFrequency.textContent = frequency[word];
+            }
+        }
+    </script>
+</body>
+</html>
